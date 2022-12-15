@@ -1,0 +1,33 @@
+# SERVER SETTINGS
+# ===============
+# Timezone
+TZ=Asia/Kolkata
+
+# DATABSASE SETTINGS
+# ==================
+# Password for Root user
+MYSQL_ROOT_PASSWORD=root
+# Database name that will be used for APC
+MARIADB_DATABASE=apc1
+
+# DASHBOARD USER SETTINGS
+# =======================
+# Username for the Admin User
+DJANGO_SUPERUSER_USERNAME=adminrex1
+# Password for the Admin User
+DJANGO_SUPERUSER_PASSWORD=fannymagnet1
+# Email for the Admin User
+DJANGO_SUPERUSER_EMAIL=admin@admin1.com
+
+# EMAIL SETTINGS
+# =============
+# SMTP host
+APC_EMAIL_SERVER=mail.amoghsaxena.com
+# SMTP username
+APC_EMAIL_USER=amogh@amoghsaxena.com
+# SMTP port
+APC_EMAIL_PORT=587
+# SMTP password
+APC_EMAIL_PASSWORD=<PassWord>
+# Always use TLS when sending emails
+APC_EMAIL_SECURE=false

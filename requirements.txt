@@ -1,0 +1,36 @@
+asgiref==3.5.2
+autopep8==1.5.7
+Django==3.2.6
+django-admin-interface==0.20.0
+# django_datetime_utc==1.0.3
+djangorestframework==3.13.1
+dj-database-url==0.5.0
+gunicorn==20.1.0
+# pycryptodomex==3.15.0
+# pycryptodome==3.15.0
+pycodestyle==2.7.0
+python-decouple==3.4
+PyMySQL==1.0.2
+pytz==2021.1
+sqlparse==0.4.3
+toml==0.10.2
+Unipath==1.1
+whitenoise==5.3.0
+
+# pyasn1==0.4.8
+# pyasn1-modules==0.2.8
+# certifi==2022.9.24
+# django-session-timeout==0.1.0
+# asgiref==3.4.1
+# autopep8==1.5.7
+# dj-database-url==0.5.0
+# Django==3.2.6
+# django-admin-interface==0.20.0
+# gunicorn==20.1.0
+# pycodestyle==2.7.0
+# python-decouple==3.4
+# pytz==2021.1
+# sqlparse==0.4.2
+# toml==0.10.2
+# Unipath==1.1
+# whitenoise==5.3.0

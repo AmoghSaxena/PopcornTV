@@ -1,0 +1,35 @@
+version: "3"
+services:
+    apc-db:
+        container_name: 'apc-db'
+        image: mariadb:10.3
+        env_file: /etc/env/apc.env
+        networks:
+            - apcnetwork 
+        ports:
+            - 33306:3306
+        # restart: on-failure
+        volumes:
+            - ./testdb4:/var/lib/mysql
+            # - ./dbconfig/my.cnf:/etc/mysql/my.cnf
+    
+    dashboard:
+        build: .
+        hostname: apcserver
+        command: /startserver
+        env_file: /etc/env/apc.env
+        ports:
+            - 8042:5085
+        volumes:
+            - ./:/APS/
+            - /opt/docker/ticker/logs:/app/logs
+        depends_on:
+            - apc-db
+        networks:
+            - apcnetwork
+        extra_hosts:
+            - "ldapserver.digivalet.com:192.168.0.61"
+  
+networks:
+  apcnetwork:
+    external: true

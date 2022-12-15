@@ -1,0 +1,43 @@
+{% load static %}
+<nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <div class="scrollbar-inner">
+    <!-- Brand -->
+    <div class="sidenav-header align-items-center">
+      <a class="navbar-brand" href="/">
+        <img src="{% static 'assets/img/brand/APC.png' %}" class="">
+      </a>
+    </div>
+    <div class="navbar-inner">
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <!-- Nav items -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link {% if 'index' in segment %} active {% endif %}" href="{% url 'dashboard' %}">
+              <i class="fa fa-cubes text-primary {% if 'index' in segment %} text-white {% endif %}"></i>
+              <span class="nav-link-text ">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'server' in segment %} active {% endif %}" href="{% url 'serverInfo' %}">
+              <i class="fa fa-server text-primary {% if 'server' in segment %} text-white {% endif %}"></i>
+              <span class="nav-link-text">Server</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'addServer' in segment %} active {% endif %}" href="{% url 'serverRegistretion' %}">
+              <i class="fa fa-plus-square text-primary {% if 'addServer' in segment %} text-white {% endif %}"></i>
+              <span class="nav-link-text">Add Server</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'unknownController' in segment %} active {% endif %}" href="{% url 'unknownController' %}">
+              <i class="fa fa-hdd text-primary {% if 'unknownController' in segment %} text-white {% endif %}"></i>
+              <span class="nav-link-text">Unknown Controller</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

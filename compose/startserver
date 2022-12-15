@@ -1,0 +1,59 @@
+#!/bin/bash
+
+
+
+echo "SLEEPING"
+sleep 1m
+
+set -o errexit
+set -o nounset
+
+cd /APS
+
+
+echo "IMPORTING CERTIFICATES.."
+
+CERT_LOCATION=$(python -c 'import certifi; print(certifi.where())')
+echo $CERT_LOCATION
+cat /APS/certificates/rootCA.crt >> /etc/ssl/certs/ca-certificates.crt
+cp /APS/certificates/rootCA.crt /usr/local/share/ca-certificates/rootCA.crt
+cat /APS/certificates/rootCA.crt >> $CERT_LOCATION
+echo "CERTIFICATES IMPORTED!!"
+
+
+###################### INITIAL SETUP ######################
+echo ${MARIADB_DATABASE} > /APS/DATABASE_NAME.txt
+echo ${MYSQL_ROOT_PASSWORD} > /APS/MYSQL_ROOT_PASSWORD_FILE.txt
+echo ${PROD_FQDN} > /APS/PROD_FQDN.txt
+
+echo ${TZ} > /etc/timezone
+# cp /APS/AdminFiles/* /usr/local/lib/python3.10/dist-packages/admin_volt/templates/admin/
+###########################################################
+
+
+
+
+################# COLLECT STATIC & MIGRATE ################
+python manage.py collectstatic --noinput
+
+python manage.py makemigrations
+
+python manage.py migrate
+###########################################################
+
+
+
+################# CREATING SUPER USER #####################
+echo "CREATING SUPERADMIN"
+python -Wd /APS/manage.py ensure_adminuser --username=$DJANGO_SUPERUSER_USERNAME --email=$DJANGO_SUPERUSER_EMAIL --password=$DJANGO_SUPERUSER_PASSWORD
+
+python -Wd /APS/manage.py ensure_adminuser --username=rexter --email=admin@example.com --password=hezoyam
+echo "CREATED SUPERADMIN"
+###########################################################
+
+
+################# MYSQL CONFIGURATIONS ####################
+cd /APS
+
+python manage.py runserver 0.0.0.0:5085
+###########################################################

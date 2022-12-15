@@ -1,0 +1,95 @@
+{% extends 'layouts/baseLog.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- Header -->
+    <div class="header bg-primary pb-5">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              {% comment %} <h6 class="h2 text-white d-inline-block mb-0">System&nbspLog</h6> {% endcomment %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="container-fluid mt--6">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col d-flex justify-content-between">
+                  <h6 class="text-uppercase text-muted ls-1 mb-1 h5"><i class="fa fa-circle text-danger"></i>&nbsp<i class="fa fa-circle text-warning"></i>&nbsp<i class="fa fa-circle text-success">&nbsp&nbsp</i>System Logs</h6>
+                  <div>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                      <a href="{% url 'sysLog' %}" class="btn btn-secondary {% if 'info' in segment %} active {% endif %}">Info</a>
+                      <a href="{% url 'errorLog' %}" class="btn btn-secondary {% if 'error' in segment %} active {% endif %}">Error</a>
+                      <a href="{% url 'debugLog' %}" class="btn btn-secondary {% if 'debug' in segment %} active {% endif %}">Debug</a>
+                    </div>
+                    <a href="{% url 'dashboard' %}" class="rounded-circle bg-danger text-white px-2 p-1 ml-2" data-toggle="tooltip" data-placement="left" title="Back To Dashboard"><i class="fa-solid fa-arrow-left"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body bg-darker overflow-auto" style="height: 800px;" id="frame">
+              <!-- Chart -->
+              <div class="" id="data">
+
+                {% for log in sysLog %}
+                <div class="text-white m-1">
+                  {% if "ERROR" in log %}
+                    <div class="text-danger">{{log}}</div>
+                  {% elif "DEBUG" in log %}
+                    <div class="text-success">{{log}}</div>
+                  {% else %}
+                    <div class="text-white">{{log}}</div>
+                  {% endif %} 
+                </div>
+                {% endfor %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var myElement = document.getElementById('frame');
+      var topPos = myElement.offsetHeight;
+      document.getElementById('frame').scrollTop = topPos+100;
+      {% comment %} setTimeout(()=>{
+        document.getElementById('frame').scrollTop = topPos+100;
+      },500); {% endcomment %}
+      
+    
+      setTimeout(function() {
+        location.reload();
+        }, 5000);
+
+        window.setInterval(function() {
+          var elem = document.getElementById('data');
+          elem.scrollTop = elem.scrollHeight;
+        }, 5000);
+
+    </script>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+{% load static %}
+  <script src="{% static 'assets/vendor/chart.js/dist/Chart.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/chart.js/dist/Chart.extension.js' %}"></script>
+
+{% endblock javascripts %}

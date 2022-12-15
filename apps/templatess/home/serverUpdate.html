@@ -1,0 +1,161 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- Header -->
+    <div class="header bg-primary pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 text-white d-inline-block mb-0">Digivalet&nbspServer</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page content -->
+    {% for item in serverDB%}
+    <div class="container-fluid mt--6">
+      <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">Server&nbsp;Information</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form method="POST" onsubmit="return validateForm()" id="addServer">
+                        {% csrf_token %}
+                        <h6 class="heading-small text-muted mb-4">Digivalet Server Information</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input">Hotel Name</label>
+                                        <input type="text" id="hotelName" class="form-control" placeholder="Enter Hotel Name" name="hotelName" value="{{item.hotelName}}" autofocus>
+                                        <label class="form-control-label text-danger" id="hotelNameEmpty">Please enter hotel name</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input">DVS Url</label>
+                                        <input type="text" id="dvsUrl" class="form-control" placeholder="Enter Server Url" name="dvsUrl" value="{{item.dvsURL}}">
+                                        <label class="form-control-label text-danger" id="dvsUrlEmpty">Please enter DVS url</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input">DVS Mac Address</label>
+                                        <input type="text" id="dvsMacAddress" class="form-control not-allowed" placeholder="Enter Mac Address" name="dvsMacAddress" value="{{item.macAddress}}" readonly>
+                                        <label class="form-control-label text-danger" id="dvsMacAddressEmpty">Please enter DVS mac address</label>
+                                        <label class="form-control-label text-danger" id="invalidDvsMacAddress">Invalid mac address</label> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input">Public IP</label>
+                                        <input type="text" id="dvsPublicIp" class="form-control" placeholder="Enter Public IP" name="dvsPublicIp" value="{{item.publicIP}}">
+                                        <label class="form-control-label text-danger" id="publicIpEmpty">Please enter public IP</label>
+                                        <label class="form-control-label text-danger" id="invalidDvsPublicIp">Invalid public IP</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input">Local IP</label>
+                                        <input type="text" id="dvsLocalIp" class="form-control not-allowed" placeholder="Enter DVS Local IP" name="dvsLocalIp" value="{{item.dvsLocalIP}}" readonly>
+                                        <label class="form-control-label text-danger" id="dvsLocalIpEmpty">Please enter local IP</label>
+                                        <label class="form-control-label text-danger" id="invalidDvsLocalIp">Invalid local IP</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4" />
+                        <h6 class="heading-small text-muted mb-4">Kong Server Information</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input">Kong Url</label>
+                                        <input type="text" id="kongUrl" class="form-control" placeholder="Enter Server URL" name="kongUrl" value="{{item.kongURL}}">
+                                        <label class="form-control-label text-danger" id="kongUrlEmpty">Please enter kong url</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input">Kong FQDN</label>
+                                        <input type="text" id="kongFqdn" class="form-control" placeholder="Enter Server FQDN" name="kongFqdn" value="{{item.kongFqdn}}">
+                                        <label class="form-control-label text-danger" id="kongFQDNEmpty">Please enter kong FQDN</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input">Local IP</label>
+                                        <input type="text" id="kongLocalIp" class="form-control not-allowed" placeholder="Enter Kong Local IP" name="kongLocalIp" value="{{item.kongLocalIP}}" readonly>
+                                        <label class="form-control-label text-danger" id="kongLocalIpEmpty">Please enter local IP</label>
+                                        <label class="form-control-label text-danger" id="invalidKongLocalIp">Invalid local IP</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4" />
+                        <h6 class="heading-small text-muted mb-4">Client Information</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input">Client ID</label>
+                                        <input type="password" id="dvcClientId" class="form-control not-allowed" placeholder="Enter Client ID" name="dvcClientId" value="{{item.clientId}}" readonly>
+                                        <label class="form-control-label text-danger" id="clientIdEmpty">Please enter client ID</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input">Client Secret</label>
+                                        <input type="password" id="dvcClientSecret" class="form-control not-allowed" placeholder="Enter Client Secret" name="dvcClientSecret" value="{{item.clientSecret}}" readonly>
+                                        <label class="form-control-label text-danger" id="clientSecretEmpty">Please enter client secret</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="text-center ml-auto mx-3">
+                                    <button type="submit" class="btn btn-primary my-4">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+      {% include "includes/footer.html" %}
+    </div>
+    {% endfor%}
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+{% load static %}
+  <script src="{% static 'assets/vendor/chart.js/dist/Chart.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/chart.js/dist/Chart.extension.js' %}"></script>
+
+{% endblock javascripts %}

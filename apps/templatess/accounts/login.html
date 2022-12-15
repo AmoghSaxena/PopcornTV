@@ -1,0 +1,85 @@
+{% extends 'layouts/base-fullscreen.html' %}
+
+{% block title %} Login {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+{% load static %}
+
+    <!-- Page content -->
+    <div class="container mt--8 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary shadow border-0">
+            <div class=" bg-transparent py-3">
+              <div class="text-center">
+                <!-- Login -->
+                <img src="{% static 'assets/img/brand/APC.png' %}" style="width: 40%;">
+              </div>
+            </div>
+            <div class="card-body px-lg-5 py-lg-4">
+              <div class="mb-1">
+
+                {% if msg %}
+                  <p class="text-danger">{{ msg }}</p>
+                {% else %}
+                  <p>
+                    Add your credentials
+                  </p>
+                {% endif %}  
+
+              </div>
+
+              <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    </div>
+                    {{ form.username }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    {{ form.password }}
+                  </div>
+                </div>
+                <div class="custom-control custom-control-alternative custom-checkbox">
+                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox" onclick = passwordShowHide()>
+                  <label class="custom-control-label" for=" customCheckLogin">
+                    <span class="">Show Password</span>
+                  </label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary my-4">Login</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function passwordShowHide() {
+        var status = document.getElementById("password");
+        if (status.type === "password") {
+          status.type = "text";
+        } else {
+          status.type = "password";
+        }
+      }
+    </script>
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

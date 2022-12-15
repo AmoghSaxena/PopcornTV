@@ -1,0 +1,5 @@
+APP_NAME Auto Provisioning Cloud
+COMPANY_NAME Digivalet.
+WEBSITE http://digivalet.com
+VERSION_MAJOR 1
+VERSION_MINOR 8-beta

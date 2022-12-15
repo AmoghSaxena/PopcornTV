@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd /APS
+
+# find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+# find . -path "*/migrations/*.pyc"  -delete
+
+python /APS/manage.py makemigrations
+python /APS/manage.py migrate

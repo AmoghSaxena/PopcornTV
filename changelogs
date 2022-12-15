@@ -1,0 +1,28 @@
+Changes for 1.8-beta:
+--------------------------------
+
+APIs:
+ * Added New API/s DVC Registration
+     - LocalIP will be added in Regitration as for future enhancement.
+
+Database:
+ * Added New Table for LocalIP storage as well for future enhancement
+
+
+Changes between 1.7-beta and 1.0:
+--------------------------------
+
+Platform support changes:
+ * 1.7-beta requires:
+     - Docker 19.x.x or later (Only if Using Dockerized Method)
+     - Python 3.9 or later (Only if Using Standalone Method)
+     - Pip3 20.x or later (Only if Using Standalone Method)
+
+ * Linux on ARM is now supported
+ * Windows is now supported as well.
+
+Core:
+ * New API Installed:
+     - Fixed The flow of API Manupliation
+ * New Graph Added for Hotel-DVC repesentation
+ * Added Log Page for live logs.

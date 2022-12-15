@@ -1,0 +1,122 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- Header -->
+    <div class="header bg-primary pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 text-white d-inline-block mb-0">Digivalet&nbspServer</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+      <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">Controllers</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="pl-lg-4">
+                        <div class="row">
+
+                          {% for item in DVCDB %}
+                            {% if forloop.counter == 1 %}
+                              <label>Hotel Name : {{item.hotelName}}</label>
+                            {% endif%}
+                          {% endfor %}
+                          <input type="text" class="my-2 ml-auto" id="input" onkeyup="searchNode()" placeholder="Search ..." title="Search">
+                        
+                          <div class="table-responsive">
+                            <table class="table table-bordered" id="table">
+                              <thead>
+                                <tr class="text-primary">
+                                  <th scope="col">#</th>
+                                  <th scope="col">Mac&nbsp;Address</th>
+                                  <th scope="col">Public&nbsp;IP</th>
+                                  <th scope="col">Local&nbsp;IP</th>
+                                  <th scope="col">Created&nbsp;On&nbsp;(UTC)</th>
+                                  <th scope="col">Modified&nbsp;On&nbsp;(UTC)</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% for item in DVCDB %}
+                                <tr>
+                                  <th scope="row" class="text-primary">{{forloop.counter}}</th>
+                                  <td>{{item.macAddress}}</td>
+                                  <td>{{item.publicIp}}</td>
+                                  <td>{{item.localIp}}</td>
+                                  <td>{{item.createdOn}}</td>
+                                  <td>{{item.modifiedOn}}</td>
+                                </tr>
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                          </div> 
+
+                          <label class="text-danger m-auto">{{log}}</label>
+
+                          <script>
+                            function searchNode() {
+                              var input, filter, table, tr, td, i, txtValue;
+                              input = document.getElementById("input");
+                              filter = input.value.toUpperCase();
+                              table = document.getElementById("table");
+                              tr = table.getElementsByTagName("tr");
+                              for (i = 0; i < tr.length; i++) {
+                                td1 = tr[i].getElementsByTagName("td")[0];
+                                td2 = tr[i].getElementsByTagName("td")[1];
+                                td3 = tr[i].getElementsByTagName("td")[2];
+                                if (td1 || td2 || td3) {
+                                  txtValue1 = td1.textContent || td1.innerText;
+                                  txtValue2 = td2.textContent || td2.innerText;
+                                  txtValue3 = td3.textContent || td3.innerText;
+                                  if (txtValue1.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                  } else if (txtValue2.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                  } else if (txtValue3.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                  } else {
+                                    tr[i].style.display = "none";
+                                  }
+                                } 
+                              }
+                            }
+                          </script>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      {% include "includes/footer.html" %}
+    </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+{% load static %}
+  <script src="{% static 'assets/vendor/chart.js/dist/Chart.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/chart.js/dist/Chart.extension.js' %}"></script>
+
+{% endblock javascripts %}

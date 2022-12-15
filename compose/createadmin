@@ -1,0 +1,12 @@
+#!/bin/bash  
+
+echo "CREATING USER $DJANGO_SUPERUSER_USERNAME"
+
+# python -Wd /APS/manage.py ensure_adminuser --username=$DJANGO_SUPERUSER_USERNAME --email=$DJANGO_SUPERUSER_EMAIL --password=$DJANGO_SUPERUSER_PASSWORD
+
+# python -Wd /APS/manage.py ensure_adminuser --username=rexter --email=admin@example.com --password=hezoyam
+
+echo "CREATED USER!"
+
+
+echo "from django.contrib.auth.models import User; User.objects.create_superuser('rexter', 'admin@example.com', 'hezoyam')" | python /APS/manage.py shell

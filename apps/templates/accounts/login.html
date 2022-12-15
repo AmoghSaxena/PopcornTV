@@ -1,0 +1,81 @@
+{% extends 'layouts/base-fullscreen.html' %}
+
+{% block title %} Login {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+{% load static %}
+
+<!-- Log-in  -->
+<section class="position-relative pb-0">
+  <div class="gen-login-page-background" style="background-image: url('../static/images/background/bg-login.jpg');"></div>
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="text-center">
+                
+                  <form id="pms_login" method="POST">
+                    {% csrf_token %}
+
+                      <a class="" href="#">
+                        <img class="mx-auto m-5 d-block" src="{% static 'images/logo/Popcorn-logo.png' %}" alt="inneye-image" style="width: 60%;">
+                      </a>
+
+                      <!-- <h3>Sign In</h3> -->
+
+                      <div class="mb-1">
+
+                        {% if msg %}
+                          <p class="text-danger">{{ msg }}</p>
+                        {% else %}
+                          <p>
+                            Add your credentials
+                          </p>
+                        {% endif %}  
+
+                      </div>
+
+                      <div class="login-username">
+                          {{ form.username }}
+                      </div>&nbsp;
+                      
+                      <div class="login-password">
+                          {{ form.password }}
+                      </div>
+
+                      <div class="login-remember mt-2 mb-3 float-right">
+                          <label id="showHide"><input name="rememberme" id="passwordCheckBox" class="" type="checkbox" onclick = passwordShowHide() style="display: none;"> Show Password </label>
+                      </div>
+
+                      <div class="login-submit">
+                          <input type="submit" class="btn btn-success btn-lg btn-block" value="Log In">
+                      </div>&nbsp;
+                  </form>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- Log-in  -->
+
+<script>
+  function passwordShowHide() {
+    var status = document.getElementById("password");
+    var label = document.getElementById("showHide");
+    if (status.type === "password") {
+      status.type = "text";
+      label.style.color = "#ff0000";
+    } else {
+      status.type = "password";
+      label.style.color = "#fff";
+    }
+  }
+</script>
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

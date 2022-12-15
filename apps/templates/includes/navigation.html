@@ -1,0 +1,161 @@
+{% load static %}
+<header id="gen-header" class="gen-header-style-1 gen-has-sticky">
+    <div class="gen-bottom-header">
+       <div class="container">
+          <div class="row">
+
+             <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                   <a class="navbar-brand" href="{% url 'inneyeHome' %}">
+                      <img class="img-fluid logo" src="{% static 'images/logo/Popcorn-logo.png' %}" alt="inneye-image">
+                   </a>
+                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <div id="gen-menu-contain" class="gen-menu-contain">
+                         <ul id="gen-main-menu" class="navbar-nav ml-auto">
+
+                           <li class="menu-item {% if 'inneyeHome' in segment %} active {% endif %}">
+                              <a href="{% url 'inneyeHome' %}" aria-current="page">Home</a>
+                           </li>
+
+                           <li class="menu-item {% if 'inneyeMovies' in segment %} active {% endif %}">
+                              <a href="{% url 'inneyeMovies' %}" aria-current="page">Movies</a>
+                           </li>
+
+                           <li class="menu-item {% if 'inneyeSeries' in segment %} active {% endif %}">
+                              <a href="{% url 'inneyeSeries' %}" aria-current="page">Series</a>
+                           </li>
+
+                           <li class="menu-item {% if 'inneyeCategories' in segment %} active {% endif %}">
+                              <a href="{% url 'inneyeCategories' 'My Drive' %}" aria-current="page">My&nbsp;Drive</a>
+                           </li>
+
+                           <li class="menu-item {% if 'f' in segment %} active {% endif %}">
+                              <a href="#">Categories</a>
+                              <i class="fa fa-chevron-down gen-submenu-icon"></i>
+                              <ul class="sub-menu">
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'Action' %}" aria-current="page">Action</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'Adventure' %}" aria-current="page">Adventure</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'Animation' %}" aria-current="page">Animation</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'Comedy' %}" aria-current="page">Comedy</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'Crime' %}" aria-current="page">Crime</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'Documentary' %}" aria-current="page">Documentary</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'Drama' %}" aria-current="page">Drama</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'Family' %}" aria-current="page">Family</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'Fantasy' %}" aria-current="page">Fantasy</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'History' %}" aria-current="page">History</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'Horror' %}" aria-current="page">Horror</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'Mystery' %}" aria-current="page">Mystery</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'Romance' %}" aria-current="page">Romance</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'Science Fiction' %}" aria-current="page">Science&nbsp;Fiction</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'Thriller' %}" aria-current="page">Thriller</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'War' %}" aria-current="page">War</a>
+                                 </li>
+                                 <li class="menu-item">
+                                    <a href="{% url 'inneyeCategories' 'Western' %}" aria-current="page">Western</a>
+                                 </li>
+                              </ul>
+                           </li>
+
+                           <li class="menu-item {% if 'Favourites' in segment %} active {% endif %}">
+                              <a href="{% url 'inneyeCategories' 'Favourites' %}" aria-current="page">Favourites</a>
+                           </li>
+
+                         </ul>
+                      </div>
+                   </div>
+                   
+                   <div class="gen-header-info-box">
+                      <div class="gen-menu-search-block">
+                         <a href="javascript:void(0)" id="gen-seacrh-btn"><i class="fa fa-search"></i></a>
+                         <div class="gen-search-form">
+                            <form role="search" method="get" class="search-form" action="#">
+                               <label>
+                                  <span class="screen-reader-text"></span>
+                                  <input type="search" class="search-field" placeholder="Search …" value="" name="s">
+                               </label>
+                               <button type="submit" class="search-submit"><span
+                                     class="screen-reader-text"></span></button>
+                            </form>
+                         </div>
+                      </div>
+                      <div class="gen-account-holder">
+                         <a href="javascript:void(0)" id="gen-user-btn"><i class="fa fa-user"></i></a>
+                         <div class="gen-account-menu">
+                            <ul class="gen-account-menu">
+                               <!-- Pms Menu -->
+                               <li>
+                                  <a href="log-in.html"><i class="fas fa-sign-in-alt"></i>
+                                     login </a>
+                               </li>
+                               <li>
+                                  <a href="register.html"><i class="fa fa-user"></i>
+                                     Register </a>
+                               </li>
+                               <!-- Library Menu -->
+                               <li>
+                                  <a href="library.html">
+                                     <i class="fa fa-indent"></i>
+                                     Library </a>
+                               </li>
+                               <li>
+                                  <a href="library.html"><i class="fa fa-list"></i>
+                                     Movie Playlist </a>
+                               </li>
+                               <li>
+                                  <a href="library.html"><i class="fa fa-list"></i>
+                                     Tv Show Playlist </a>
+                               </li>
+                               <li>
+                                  <a href="library.html"><i class="fa fa-list"></i>
+                                     Video Playlist </a>
+                               </li>
+                               <li>
+                                  <a href="upload-video.html"> <i class="fa fa-upload"></i>
+                                     Upload Video </a>
+                               </li>
+                            </ul>
+                         </div>
+                      </div>
+                   </div>
+                   <button class="navbar-toggler " type="button" data-toggle="collapse"
+                      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                      aria-expanded="false" aria-label="Toggle navigation">
+                      <i class="fas fa-bars"></i>
+                   </button>
+                </nav>
+             </div>
+          </div>
+       </div>
+    </div>
+ </header>
